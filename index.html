@@ -27,6 +27,16 @@
   <h1>Ścieżki zawodowe Architekta IARP</h1>
   <p class="lead">Uprawnienia architektoniczne otwierają dużo więcej drzwi niż pracownia projektowa. Tu znajdziesz 60 ścieżek rozwoju w 21 obszarach gospodarki. Każda prowadzi krok po kroku od praktyki architekta do nowych ról, bez zdobywania kolejnych uprawnień. Wybierz obszar na linii poniżej i otwórz kartę ścieżki.</p>
 
+  <figure class="hero-fig">
+    <a class="hero-link" href="sciezka-architekta-2576.jpg" target="_blank" rel="noopener" aria-label="Otwórz grafikę Ścieżka Architekta w pełnym rozmiarze">
+      <picture>
+        <source type="image/webp" srcset="sciezka-architekta-900.webp 900w, sciezka-architekta-1600.webp 1600w, sciezka-architekta-2576.webp 2576w" sizes="(max-width: 1100px) calc(100vw - 32px), 1040px">
+        <img src="sciezka-architekta-1600.jpg" width="2576" height="1449" decoding="async" alt="Infografika Ścieżka Architekta. W centrum IARP, od którego odchodzi osiem gałęzi: 1. IARP, czyli samorząd zawodowy, uprawnienia i etyka; 2. faza projektowa; 3. faza realizacji; 4. faza użytkowania; 5. skale interwencji: budynki, urbanistyka, infrastruktura; 6. obszary wpływu i kontekstu: środowisko naturalne i zbudowane, społeczeństwo; 7. bezpieczeństwo, zdrowie, prawo; 8. narzędzia i strategie: finanse, dane i BIM, planowanie regionalne, strategie, materiały, edukacja, administracja, AI, koordynacja.">
+      </picture>
+    </a>
+    <figcaption><span>Ścieżka Architekta: z IARP przez fazy procesu inwestycyjnego, skale interwencji i obszary wpływu do narzędzi i strategii. Szczegółowy podział na 21 obszarów jest na linii poniżej.</span><span class="zoom-hint">Dotknij grafiki, aby otworzyć ją w pełnym rozmiarze i powiększyć.</span></figcaption>
+  </figure>
+
   <div class="legend" aria-label="Legenda grup obszarów"><span><i style="background:var(--z1)"></i>Fazy procesu inwestycyjnego</span><span><i style="background:var(--z2)"></i>Obiekty i przestrzeń</span><span><i style="background:var(--z4)"></i>Ludzie, ryzyko i prawo</span><span><i style="background:var(--z6)"></i>Kapitał, dane i technologie cyfrowe</span><span><i style="background:var(--z5)"></i>Przyroda i region</span><span><i style="background:var(--z3)"></i>Instytucje i zarządzanie</span></div>
 
   <section class="panel" aria-labelledby="path-title">
@@ -456,6 +466,7 @@
   <p class="note">Strona startowa zbiera karty ścieżek kariery architekta IARP. Opisy na tej stronie to krótkie streszczenia kart. Czas przy etapach na kartach jest orientacyjny, a żadna ścieżka nie wymaga nowych uprawnień. Frazy na kartach pochodzą z bazy danych WERSJA 01. Ostatnia aktualizacja kart: <time datetime="2026-11-23">23 listopada 2026</time>.</p>
   <footer class="author"><span class="author-k">Stronę i karty wytworzył architekt IARP</span><span class="author-v"><a href="https://sites.google.com/view/tomaszgesiak/pl" target="_blank" rel="noopener noreferrer me">TOMASZ GĘSIAK</a></span><nav class="author-links" aria-label="Autor w sieci"><a href="https://sites.google.com/view/tomaszgesiak/pl" target="_blank" rel="noopener noreferrer me">Strona WWW</a><a href="https://www.facebook.com/people/TomaszGesiak/61554422925950/" target="_blank" rel="noopener noreferrer me">Facebook</a><a href="https://www.youtube.com/@TOMASZGESIAK" target="_blank" rel="noopener noreferrer me">YouTube</a><a href="https://www.linkedin.com/in/tomaszgesiak/" target="_blank" rel="noopener noreferrer me">LinkedIn</a><a href="https://www.instagram.com/tomaaszgesiak/" target="_blank" rel="noopener noreferrer me">Instagram</a></nav></footer>
 </main>
+<a class="home-btn" id="home-btn" href="#top" aria-label="HOME: przewiń na początek strony"><span class="home-ico" aria-hidden="true"></span><span class="home-txt">HOME</span></a>
 <script>
 (function () {
   var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -497,6 +508,17 @@
     items.forEach(function (li) { var ok = t.every(function (w) { return li._q.indexOf(w) !== -1; }); li.hidden = !ok; if (ok) shown++; });
     stages.forEach(function (s) { var any = !!s.querySelector('.paths > li:not([hidden])'); s.hidden = !any; if (any && t.length) s.querySelector('.card').open = true; });
     out.textContent = shown + ' ' + word(shown); empty.hidden = shown !== 0; sync();
+  });
+
+  /* Przycisk HOME: pokazuje się po przewinięciu, płynnie wraca na początek */
+  var home = document.getElementById('home-btn');
+  function homeVis() { home.classList.toggle('show', window.scrollY > 500); }
+  window.addEventListener('scroll', homeVis, { passive: true }); homeVis();
+  home.addEventListener('click', function (e) {
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+    history.replaceState(null, '', location.pathname + location.search);
+    var h1 = document.querySelector('h1'); h1.setAttribute('tabindex', '-1'); h1.focus({ preventScroll: true });
   });
 
   /* Na telefonie obszary startują zwinięte – jak etapy na kartach */

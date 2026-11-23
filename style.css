@@ -244,6 +244,22 @@ body { -webkit-text-size-adjust: 100%; }
 /* Rozgałęzienie na końcu: budowa karty */
 .role .num-s { font-family: var(--font-mono); font-size: 11.5px; color: var(--c); letter-spacing: .04em; }
 
+/* Grafika „Ścieżka Architekta” pod opisem */
+.hero-fig { margin: 22px 0 0; background: var(--sheet); border: 1px solid var(--rule); border-radius: 14px; padding: 12px; }
+.hero-link { display: block; border-radius: 10px; overflow: hidden; background: #fff; cursor: zoom-in; }
+.hero-link img { display: block; width: 100%; height: auto; }
+.hero-link:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.hero-fig figcaption { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 16px; margin: 10px 4px 2px; font-size: 13.5px; color: var(--ink-2); }
+.hero-fig .zoom-hint { font-family: var(--font-mono); font-size: 11.5px; color: var(--ink-3); }
+.hero-fig + .legend { margin-top: 18px; }
+@media (hover: hover) and (min-width: 900px) { .hero-fig .zoom-hint::before { content: "↗ "; } }
+@media (max-width: 640px) {
+  .hero-fig { margin-top: 18px; padding: 6px; border-radius: 12px; }
+  .hero-link { border-radius: 8px; }
+  .hero-fig figcaption { font-size: 14px; margin: 8px 4px 4px; }
+  .hero-fig .zoom-hint { font-size: 12px; }
+}
+
 @media (max-width: 640px) {
   .rail-gap { display: none; }
   .rail-row-label { margin: 14px 0 4px; }
@@ -262,3 +278,22 @@ body { -webkit-text-size-adjust: 100%; }
   .tl-bar, .rail-scroll { display: none; }
   .path, .stage { break-inside: avoid; }
 }
+
+/* Przycisk HOME w prawym dolnym rogu */
+.home-btn { position: fixed; right: max(20px, env(safe-area-inset-right)); bottom: max(20px, env(safe-area-inset-bottom)); z-index: 50;
+  display: inline-flex; align-items: center; gap: 8px; min-height: 48px; padding: 8px 16px 8px 8px; border-radius: 999px;
+  background: var(--ink); color: var(--sheet); text-decoration: none; font-family: var(--font-mono); font-size: 13px; font-weight: 500; letter-spacing: .08em;
+  box-shadow: 0 6px 18px rgba(22, 35, 58, .22); opacity: 0; visibility: hidden; transform: translateY(12px);
+  transition: opacity .2s, transform .2s, visibility .2s, background-color .15s; }
+.home-btn.show { opacity: 1; visibility: visible; transform: none; }
+.home-btn:hover { background: var(--accent); }
+.home-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.home-ico { width: 32px; height: 32px; border-radius: 50%; border: 2px solid currentColor; display: grid; place-items: center; }
+.home-ico::before { content: ""; width: 9px; height: 9px; border-left: 2.5px solid currentColor; border-top: 2.5px solid currentColor; transform: translateY(2px) rotate(45deg); }
+h1:focus { outline: none; }
+@media (max-width: 640px) {
+  .home-btn { right: max(14px, env(safe-area-inset-right)); bottom: max(14px, env(safe-area-inset-bottom)); min-height: 52px; padding: 8px 14px 8px 8px; font-size: 13px; }
+  .note { margin-bottom: 0; }
+  .author { padding-bottom: 72px; }
+}
+@media print { .home-btn { display: none; } }

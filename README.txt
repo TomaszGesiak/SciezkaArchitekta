@@ -1,6 +1,5 @@
 ŚCIEŻKI ZAWODOWE ARCHITEKTA IARP
 ================================
-AI GENERATE:
 
 Strona startowa dla 60 kart ścieżek kariery architekta z uprawnieniami IARP.
 Ścieżki są podzielone na 21 obszarów gospodarki, od faz procesu inwestycyjnego
@@ -13,6 +12,9 @@ ZAWARTOŚĆ REPOZYTORIUM
 index.html                 strona startowa (mapa obszarów i linki do kart)
 style.css                  styl strony startowej, zgodny z kartami
 architekt_iarp_*.html      60 kart ścieżek kariery
+sciezka-architekta-*.webp  grafika "Ścieżka Architekta" (3 rozmiary: telefon,
+                           komputer, pełny rozmiar)
+sciezka-architekta-*.jpg   ta sama grafika w JPG (zapas i powiększenie)
 README.txt                 ten plik
 
 
