@@ -1,5 +1,6 @@
 ŚCIEŻKI ZAWODOWE ARCHITEKTA IARP
 ================================
+AI GENERATE
 
 Strona startowa dla 60 kart ścieżek kariery architekta z uprawnieniami IARP.
 Ścieżki są podzielone na 21 obszarów gospodarki, od faz procesu inwestycyjnego
@@ -34,6 +35,21 @@ DODANIE NOWEJ KARTY
 2. W index.html skopiuj dowolny element <li> z listy ścieżek
    we właściwym obszarze i zmień w nim link, tytuł oraz opis.
 
+UWAGA:
+Prezentowana strona internetowa stanowi autorską koncepcję Tomasza Gęsiaka, 
+ukazującą potencjalne ścieżki rozwoju zawodowego architektów posiadających 
+uprawnienia projektowe oraz zrzeszonych w izbie zawodowej. Zarówno baza danych, 
+jak i przedstawione na stronie ścieżki kariery oraz treści zostały wygenerowane 
+przy użyciu sztucznej inteligencji (AI) na podstawie założeń autora.
+
+Niniejsze repozytorium oraz publikowane materiały mają charakter wyłącznie poglądowy 
+i nie stanowią oficjalnego stanowiska ani nie są autoryzowane przez żadną izbę zawodową, 
+w tym Izbę Architektów Rzeczypospolitej Polskiej (IARP).
+
+Ze względu na specyfikę narzędzi AI (ryzyko wystąpienia błędów, nieścisłości,
+tzw. halucynacji lub nieaktualnych danych), wszelkie zawarte tu informacje wymagają 
+samodzielnej weryfikacji przez użytkownika. Autor nie ponosi odpowiedzialności 
+za jakiekolwiek decyzje ani działania podjęte na podstawie treści opublikowanych w tym serwisie.
 
 AUTOR
 -----
