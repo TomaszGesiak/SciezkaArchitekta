@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<!--
+  ============================================================================
+  SZABLON KARTY ŚCIEŻKI · wersja szablonu 1.0
+  NOTATKA DLA AI / AI EDITOR NOTES (niewidoczna na stronie)
+
+  1. Całą treść karty zmieniaj WYŁĄCZNIE w bloku:
+       <script type="application/json" id="card-data">
+  2. Ukryte uwagi (braki w bazie, wykluczenia, zakres) zapisuj WYŁĄCZNIE w bloku:
+       <script type="application/json" id="ai-notes">
+     Braków nigdy nie pokazuj w widocznej treści strony.
+  3. Nie zmieniaj CSS, kodu JS ani plakietki "AI GENERATED" (img.ai-badge),
+     chyba że użytkownik wprost o to poprosi.
+  ============================================================================
+-->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Architekt IARP w koordynacji sektora finansowego</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..100,500..800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  /* Paleta stref: --z1 … --z6 (wybierane w danych karty polem "color"). Layout: blueprint sheet; a metro-style overview rail, then a vertical construction timeline of stage cards, ending in a fork of target roles. */
+  --paper: #f3f4f1;
+  --sheet: #ffffff;
+  --ink: #16233a;
+  --ink-2: #4a566b;
+  --ink-3: #7c8697;
+  --rule: #d9dde3;
+  --grid: rgba(22, 35, 58, 0.045);
+  --z1: #3b4cca; --z1-bg: #eceefb;
+  --z2: #b67a06; --z2-bg: #fbf2df;
+  --z3: #0d7a69; --z3-bg: #e2f3ef;
+  --z4: #c0432b; --z4-bg: #fbe9e5;
+  --z5: #5a7d1a; --z5-bg: #eef4e1;
+  --z6: #8a3fa0; --z6-bg: #f4e8f7;
+  --accent: var(--z3);
+
+  --font-display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --font-body: "IBM Plex Sans", "Segoe UI", Roboto, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0f1522; --sheet: #161e2e; --ink: #e7ebf2; --ink-2: #b2bccb; --ink-3: #7f8a9c; --rule: #2a3447; --grid: rgba(180, 200, 235, 0.05);
+    --z1: #8d9bff; --z1-bg: #1f2547; --z2: #f0b647; --z2-bg: #3a2c10; --z3: #4fd1b8; --z3-bg: #0f3530;
+    --z4: #ff8f78; --z4-bg: #42201a; --z5: #a9d35a; --z5-bg: #27331a; --z6: #d29be6; --z6-bg: #33203b; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #0f1522; --sheet: #161e2e; --ink: #e7ebf2; --ink-2: #b2bccb; --ink-3: #7f8a9c; --rule: #2a3447; --grid: rgba(180, 200, 235, 0.05);
+  --z1: #8d9bff; --z1-bg: #1f2547; --z2: #f0b647; --z2-bg: #3a2c10; --z3: #4fd1b8; --z3-bg: #0f3530;
+  --z4: #ff8f78; --z4-bg: #42201a; --z5: #a9d35a; --z5-bg: #27331a; --z6: #d29be6; --z6-bg: #33203b; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body {
+  background-color: var(--paper);
+  background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 24px 24px;
+  color: var(--ink); font-family: var(--font-body); font-size: 16px; line-height: 1.55;
+}
+.wrap { max-width: 1080px; margin: 0 auto; padding: 40px 20px 64px; }
+.eyebrow { font-family: var(--font-mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); }
+h1 { font-family: var(--font-display); font-stretch: 85%; font-weight: 800; font-size: clamp(32px, 5vw, 52px); line-height: 1.02; margin: 8px 0 12px; text-wrap: balance; letter-spacing: -0.01em; }
+h2 { font-family: var(--font-display); font-stretch: 90%; font-weight: 700; font-size: 26px; margin: 0; text-wrap: balance; }
+h3 { font-family: var(--font-display); font-weight: 700; font-size: 20px; margin: 0; line-height: 1.2; text-wrap: balance; }
+.lead { color: var(--ink-2); max-width: 64ch; margin: 0; }
+
+
+.legend { margin-top: 24px; display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: 13px; color: var(--ink-2); margin-bottom: 20px; }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+.legend i { width: 12px; height: 12px; border-radius: 50%; display: inline-block; }
+
+.panel { background: var(--sheet); border: 1px solid var(--rule); border-radius: 14px; padding: 24px; }
+.panel-head { display: grid; gap: 6px; margin-bottom: 20px; }
+
+.rail-scroll { overflow-x: auto; padding-bottom: 6px; }
+.rail { position: relative; display: grid; grid-auto-flow: column; grid-auto-columns: minmax(92px, 1fr); min-width: 900px; }
+.rail .seg { position: absolute; top: 19px; height: 6px; border-radius: 3px; }
+.station { position: relative; z-index: 1; display: grid; justify-items: center; gap: 8px; padding: 0 4px; background: none; border: 0; cursor: pointer; font: inherit; color: var(--ink); text-align: center; border-radius: 8px; }
+.station .dot { width: 44px; height: 44px; border-radius: 50%; background: var(--sheet); border: 4px solid currentColor; display: grid; place-items: center; font-family: var(--font-mono); font-weight: 500; font-size: 14px; transition: transform .15s; }
+.station:hover .dot { transform: scale(1.08); }
+.station .lbl { font-size: 12.5px; line-height: 1.25; color: var(--ink-2); max-width: 13ch; }
+.station .tm { font-family: var(--font-mono); font-size: 11px; color: var(--ink-3); }
+.station.end .dot { border-radius: 10px; }
+
+.timeline { position: relative; margin-top: 32px; display: grid; gap: 18px; }
+.stage { display: grid; grid-template-columns: 56px 1fr; gap: 16px; position: relative; scroll-margin-top: 16px; }
+.stage .spine { position: relative; display: flex; justify-content: center; }
+.stage .spine::before { content: ""; position: absolute; top: 0; bottom: -18px; width: 4px; background: var(--c); opacity: .35; border-radius: 2px; }
+.stage:last-child .spine::before { bottom: 0; }
+.stage .num { position: relative; z-index: 1; width: 44px; height: 44px; border-radius: 50%; background: var(--c); color: var(--sheet); display: grid; place-items: center; font-family: var(--font-mono); font-weight: 500; }
+.card { background: var(--sheet); border: 1px solid var(--rule); border-left: 4px solid var(--c); border-radius: 0 12px 12px 0; padding: 18px 20px; display: grid; gap: 14px; }
+.card.flash { animation: flash 1.2s ease-out; }
+@keyframes flash { 0% { box-shadow: 0 0 0 4px var(--cbg); } 100% { box-shadow: 0 0 0 0 transparent; } }
+.meta { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.pill { font-family: var(--font-mono); font-size: 11.5px; padding: 3px 9px; border-radius: 999px; background: var(--cbg); color: var(--c); font-weight: 500; letter-spacing: .02em; }
+.time { font-family: var(--font-mono); font-size: 12px; color: var(--ink-2); border: 1px dashed var(--rule); padding: 2px 8px; border-radius: 6px; font-variant-numeric: tabular-nums; }
+.do { margin: 0; color: var(--ink-2); max-width: 70ch; }
+.cols { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); gap: 20px; }
+.colh { font-family: var(--font-mono); font-size: 11.5px; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-3); margin: 0 0 8px; }
+.skills { margin: 0; padding: 0; list-style: none; display: grid; gap: 6px; font-size: 14.5px; }
+.skills li { display: grid; grid-template-columns: 14px 1fr; gap: 8px; }
+.skills li::before { content: ""; width: 8px; height: 8px; margin-top: 8px; background: var(--c); transform: rotate(45deg); }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { display: inline-flex; flex-direction: column; gap: 1px; border: 1px solid var(--rule); border-radius: 8px; padding: 5px 9px; font-size: 13px; line-height: 1.25; background: var(--paper); }
+.chip small { font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-3); letter-spacing: .03em; }
+.ready { display: flex; gap: 10px; align-items: baseline; font-size: 14.5px; border-top: 1px solid var(--rule); padding-top: 12px; }
+.ready b { font-family: var(--font-mono); font-size: 11.5px; font-weight: 500; letter-spacing: .06em; text-transform: uppercase; color: var(--c); white-space: nowrap; }
+
+.fork { margin-top: 28px; }
+.fork-head { display: grid; gap: 6px; margin-bottom: 14px; }
+.fork svg { display: block; width: 100%; height: 36px; }
+.roles { display: grid; grid-template-columns: repeat(var(--r, 4), minmax(0, 1fr)); gap: 12px; }
+.role { background: var(--sheet); border: 1px solid var(--rule); border-top: 4px solid var(--c); border-radius: 0 0 12px 12px; padding: 14px 16px; display: grid; gap: 8px; align-content: start; }
+.role h4 { font-family: var(--font-display); font-size: 17px; margin: 0; line-height: 1.2; }
+.role p { margin: 0; font-size: 14px; color: var(--ink-2); }
+
+.note { margin-top: 32px; font-size: 13.5px; color: var(--ink-3); max-width: 80ch; }
+
+@media (max-width: 760px) {
+  .cols { grid-template-columns: 1fr; }
+  .roles { grid-template-columns: 1fr 1fr; }
+  .stage { grid-template-columns: 40px 1fr; gap: 10px; }
+  .stage .num { width: 34px; height: 34px; font-size: 13px; }
+  .panel { padding: 16px; }
+}
+@media (max-width: 440px) {
+  .roles { grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
+}
+.wrap { position: relative; }
+.ai-badge { position: absolute; top: 28px; right: 20px; width: 150px; height: auto; display: block; }
+.wrap > .eyebrow { padding-right: 170px; }
+@media (max-width: 440px) { .ai-badge { width: 110px; top: 20px; right: 16px; } .wrap > .eyebrow { padding-right: 126px; } }
+
+@media (max-width: 640px) {
+  body { font-size: 16.5px; background-size: 20px 20px; }
+  .wrap { padding: max(20px, env(safe-area-inset-top)) max(16px, env(safe-area-inset-right)) 48px max(16px, env(safe-area-inset-left)); }
+  h1 { font-size: 31px; line-height: 1.08; margin-top: 10px; }
+  h2 { font-size: 22px; line-height: 1.2; }
+  h3 { font-size: 19.5px; }
+  .lead { font-size: 16px; }
+  .eyebrow { font-size: 11.5px; }
+  .legend { font-size: 14px; gap: 8px 14px; }
+  .panel { padding: 16px 14px; border-radius: 12px; }
+  .rail-scroll { overflow: visible; }
+  .rail { grid-auto-flow: row; grid-auto-columns: auto; min-width: 0; }
+  .rail .seg { display: none; }
+  .station { grid-template-columns: 40px 1fr auto; justify-items: start; align-items: center; text-align: left; gap: 12px; padding: 7px 0; min-height: 52px; }
+  .station .dot { width: 38px; height: 38px; border-width: 3px; font-size: 13px; }
+  .station:not(:last-child)::after { content: ""; position: absolute; left: 18px; top: 45px; bottom: -7px; width: 3px; border-radius: 2px; background: currentColor; opacity: .45; }
+  .station .lbl { max-width: none; font-size: 15.5px; color: var(--ink); }
+  .station .tm { font-size: 12px; white-space: nowrap; }
+  .timeline { margin-top: 24px; gap: 14px; }
+  .stage { grid-template-columns: 1fr; gap: 0; }
+  .stage .spine { display: none; }
+  .card { border-radius: 0 12px 12px 0; padding: 16px 14px; gap: 12px; }
+  .card h3::before { content: attr(data-n) " · "; font-family: var(--font-mono); font-weight: 500; font-size: 15px; color: var(--c); }
+  .do { font-size: 16px; }
+  .cols { grid-template-columns: 1fr; gap: 16px; }
+  .colh { font-size: 12px; }
+  .skills { font-size: 16px; gap: 8px; }
+  .chip { font-size: 14.5px; padding: 7px 10px; }
+  .chip small { font-size: 12px; }
+  .ready { flex-direction: column; gap: 4px; font-size: 15.5px; }
+  .ready b { font-size: 12px; }
+  .pill { font-size: 12px; }
+  .time { font-size: 12.5px; }
+  .fork svg { display: none; }
+  .roles { grid-template-columns: 1fr; gap: 12px; }
+  .role h4 { font-size: 18.5px; }
+  .role p { font-size: 15.5px; }
+  .note { font-size: 14px; }
+  .ai-badge { width: 112px; top: max(18px, env(safe-area-inset-top)); right: max(16px, env(safe-area-inset-right)); }
+  .wrap > .eyebrow { padding-right: 124px; }
+}
+.card { display: block; }
+.card > summary { list-style: none; cursor: pointer; display: grid; gap: 12px; border-radius: 0 10px 10px 0; }
+.card > summary::-webkit-details-marker { display: none; }
+.card > summary:focus-visible, .expand-all:focus-visible { outline: 2px solid var(--c, var(--z1)); outline-offset: 4px; }
+.more { display: inline-flex; align-items: center; gap: 8px; justify-self: start; font-family: var(--font-mono); font-size: 12.5px; font-weight: 500; color: var(--c); border: 1px solid var(--cbg); background: var(--cbg); border-radius: 999px; padding: 6px 12px; min-height: 34px; }
+.card > summary:hover .more { border-color: var(--c); }
+.more-open { display: none; }
+.card[open] .more-open { display: inline; }
+.card[open] .more-closed { display: none; }
+.chev { width: 8px; height: 8px; border-right: 2px solid currentColor; border-bottom: 2px solid currentColor; transform: translateY(-2px) rotate(45deg); transition: transform .2s; }
+.card[open] .chev { transform: translateY(2px) rotate(-135deg); }
+.card-body { display: grid; gap: 14px; margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--rule); }
+.tl-bar { display: flex; justify-content: flex-end; margin-top: 28px; }
+.expand-all { font: inherit; font-size: 14px; color: var(--ink); background: var(--sheet); border: 1px solid var(--rule); border-radius: 999px; padding: 8px 16px; min-height: 40px; cursor: pointer; }
+.expand-all:hover { border-color: var(--ink-3); }
+.tl-bar + .timeline { margin-top: 14px; }
+@media (max-width: 640px) {
+  .more { font-size: 13px; min-height: 40px; padding: 8px 14px; }
+  .card-body { margin-top: 14px; padding-top: 14px; }
+  .tl-bar { margin-top: 22px; }
+  .expand-all { width: 100%; min-height: 46px; font-size: 15px; }
+}
+.author { margin-top: 28px; padding-top: 16px; border-top: 1px solid var(--rule); display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 12px; }
+.author-k { font-family: var(--font-mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); }
+.author-v { font-family: var(--font-display); font-weight: 700; font-size: 16px; letter-spacing: .02em; color: var(--ink); }
+@media (max-width: 640px) { .author { flex-direction: column; gap: 4px; } .author-k { font-size: 12.5px; } .author-v { font-size: 17px; } }
+.author-v a { color: inherit; text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 4px; text-decoration-color: var(--accent); }
+.author-v a:hover { text-decoration-color: currentColor; }
+.author-links { display: flex; flex-wrap: wrap; gap: 8px; flex-basis: 100%; margin-top: 6px; }
+.author-links a, .author-links span { display: inline-flex; align-items: center; min-height: 36px; padding: 6px 14px; border-radius: 999px; border: 1px solid var(--rule); background: var(--sheet); font-size: 14px; color: var(--ink); text-decoration: none; }
+.author-links a:hover { border-color: var(--ink); }
+.author-links a:focus-visible, .author-v a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.author-links span { color: var(--ink-3); border-style: dashed; }
+@media (max-width: 640px) { .author-links a, .author-links span { min-height: 44px; font-size: 15px; } }
+</style>
+<script type="application/json" id="ai-notes">
+{
+ "wersja_szablonu": "1.0",
+ "przeznaczenie": "Notatka dla AI modyfikującego ten plik. Nie wyświetlać jej na stronie.",
+ "zasady_stale": [
+  "Treść karty zmieniać wyłącznie w bloku #card-data. CSS, JS i plakietki 'AI GENERATED' nie ruszać bez wyraźnej prośby użytkownika.",
+  "Każda fraza w polach map[] musi istnieć dokładnie w bazie danych użytej do karty (ta sama pisownia), a s[] to nazwy zbiorów, z których pochodzi.",
+  "Braki, luki i wykluczenia opisywać tylko w #ai-notes (sekcja specyficzne_dla_karty), nigdy w widocznej treści.",
+  "W widocznej treści źródło fraz to 'baza danych' + numer wersji (source.database); nie podawać nazw plików.",
+  "Przy nowej wersji karty zaktualizować source.database i source.date.",
+  "Etapy są rozwijane (domyślnie zwinięte); linia etapów i role docelowe są zawsze widoczne. Nie zmieniać tego zachowania.",
+  "Teksty po polsku, krótkie zdania, strona czynna, zwracanie się do czytelnika na 'Ty'. Czasy trwania podawać jako orientacyjne zakresy.",
+  "Po zmianach sprawdzić: poprawny JSON, widok na komputerze i na telefonie (390 px) bez przewijania w bok, działające rozwijanie."
+ ],
+ "schemat_danych": {
+  "meta": "title (karta przeglądarki), eyebrow (mała linia nad tytułem), h1 (tytuł), lead (wstęp 1–3 zdania)",
+  "path": "title i lead panelu z linią etapów",
+  "zones": "słownik stref: klucz → {label, color}; color = numer palety 1–6 (1 granat, 2 bursztyn, 3 morski, 4 koral, 5 oliwka, 6 fiolet). Na karcie zwykle 2–4 strefy.",
+  "endZone": "klucz strefy, w której kończy się ścieżka (kolor ról docelowych)",
+  "stages": "5–9 etapów: {z, t, time, do, skills[3], map[{p, s[]}] (3–6 fraz), next}",
+  "roles": "2–4 role docelowe: {t, d, map[]} – przy więcej niż 4 rozgałęzienie się nie zmieści",
+  "footnote": "zdania notki na dole (bez wersji i daty – dopisuje je silnik)",
+  "source": "{database: np. 'WERSJA 01', date: 'RRRR-MM-DD'}",
+  "author": "{name, www, facebook, youtube, linkedin, instagram} – adresy z https://, pusty = przycisk nieaktywny",
+  "labels": "opcjonalnie: nadpisanie etykiet interfejsu (np. map: 'W bazie danych')"
+ },
+ "specyficzne_dla_karty": {
+  "zakres": "Ścieżka: architekt z uprawnieniami IARP (projektowymi) → role koordynacyjne w sektorze finansowym: język finansów inwestycji, rynek i wartość nieruchomości, techniczne due diligence, monitoring kredytowanych inwestycji (Lenders Technical Advisor), zielone finansowanie i taksonomia UE, ubezpieczenia i ryzyko, portfel nieruchomości i finansowanie publiczne (BGK, EBI). Odróżniono od kart 'sektor finansowy' i 'sektor bankowy' (ogólne wejście do instytucji) oraz 'koordynacja inwestycji' (praca po stronie inwestora). Wykluczono funkcje wymagające uprawnień lub licencji: rzeczoznawca majątkowy (operat szacunkowy – architekt tylko go czyta), doradca inwestycyjny i makler (licencja KNF), agent i broker ubezpieczeniowy (wpis do rejestru KNF), biegły rewident. Pole s[] pokazuje maksymalnie 3 zbiory frazy (priorytet: IARP, FINANSE, KOORDYNACJA, ŚRODOWISKO ZBUDOWANE, STRATEGIE ROZWOJU, BUDYNKI…); wszystkie frazy zweryfikowane automatycznie z grafem bazy.",
+  "brakujace_elementy_w_bazie": "Brak fraz: 'sektor finansowy', 'monitoring inwestycji', 'monitoring techniczny', 'inspektor bankowy', 'raport techniczny', 'fundusz inwestycyjny' w formie ogólnej, 'zielony kredyt' (jest liczba mnoga), 'green loan', 'ubezpieczyciel', 'CAR' (Contractors All Risks), 'ubezpieczenie budowy' jest, ale brak 'polisa budowlana', 'Europejski Bank Odbudowy i Rozwoju', 'kredytodawca'. 'asset manager' tylko w PRAWO, 'ścieżka dekarbonizacji' tylko w URBANISTYKA. Brak w zbiorze IARP fraz o sektorze finansowym poza ubezpieczeniem OC i funduszami UE. Kandydaci do dopisania.",
+  "problemy_danych_zrodlowych": "Zbiór FINANSE zawiera tysiące mechanicznie generowanych wariantów fraz (np. 'kredyt monitoring', 'cash flow dla architekta', 'IRR monitoring', 'kontrola kosztów w praktyce') – użyto form podstawowych; 'kredyt monitoring' i 'bank monitoring' użyto, bo trafnie nazywają funkcję. 'nadzór bankowy' oznacza nadzór KNF nad bankami, nie monitoring inwestycji – nie użyto. Wiele fraz zielonego finansowania przypisanych do zbioru MATERIAŁY ('zielone finansowanie', 'SFDR', 'CRREM', 'stranded assets') – niespójne tematycznie. Duplikaty: 'TDD'/'technical due diligence', 'green bonds'/'zielone obligacje', 'green finance'/'zielone finansowanie', 'BGK'/'Bank Gospodarstwa Krajowego', 'EBI'/'Europejski Bank Inwestycyjny', 'LCC'/'koszty cyklu życia', 'PPP'/'partnerstwo publiczno-prywatne'. 'TDD' w zbiorze ARTIFICIAL INTELLIGENCE oznacza Test-Driven Development. Użyto pisowni z bazy.",
+  "brakujace_dane_autora": "Brak – komplet danych autora i linków."
+ }
+}
+</script>
+</head>
+<body>
+<main class="wrap">
+  <img class="ai-badge" src="data:image/png;base64,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" alt="AI generated" width="150">
+  <div class="eyebrow" id="card-eyebrow"></div>
+  <h1 id="card-h1"></h1>
+  <p class="lead" id="card-lead"></p>
+
+  <div class="legend" aria-label="Legenda stref" id="legend"></div>
+
+  <section class="panel" aria-labelledby="path-title">
+    <div class="panel-head">
+      <h2 id="path-title"></h2>
+      <p class="lead" id="path-lead"></p>
+    </div>
+    <div class="rail-scroll"><div class="rail" id="rail"></div></div>
+  </section>
+
+  <div class="tl-bar"><button type="button" class="expand-all" id="expand-all" aria-pressed="false">Rozwiń wszystkie etapy</button></div>
+  <div class="timeline" id="timeline"></div>
+
+  <section class="fork" aria-labelledby="fork-title">
+    <div class="fork-head">
+      <div class="eyebrow" id="roles-eyebrow"></div>
+      <h2 id="fork-title"></h2>
+    </div>
+    <svg viewBox="0 0 1000 36" preserveAspectRatio="none" aria-hidden="true" id="fork-svg"></svg>
+    <div class="roles" id="roles"></div>
+  </section>
+
+  <p class="note" id="card-note"></p>
+  <footer class="author" id="author"><span class="author-k" id="author-k"></span><span class="author-v" id="author-name"></span><nav class="author-links" id="author-links" aria-label="Autor w sieci"></nav></footer>
+</main>
+
+<!-- ===================== DANE KARTY – edytuj tylko ten blok ===================== -->
+<script type="application/json" id="card-data">
+{
+ "meta": {
+  "title": "Architekt IARP w koordynacji sektora finansowego",
+  "eyebrow": "IARP · Baza YIARP · Ścieżka kariery",
+  "h1": "Architekt IARP w koordynacji sektora finansowego",
+  "lead": "Droga od pracowni projektowej do instytucji, które finansują, ubezpieczają i posiadają budynki, bez zdobywania kolejnych uprawnień. Banki, fundusze i ubezpieczyciele potrzebują kogoś, kto oceni projekt, budowę i budynek od strony technicznej i przełoży to na ryzyko i pieniądze. Na tej ścieżce stajesz się łącznikiem między inwestycją a finansującym. Przy każdym etapie są frazy z bazy danych i nazwa zbioru, z którego pochodzą."
+ },
+ "path": {
+  "title": "Izba IARP → koordynacja w sektorze finansowym",
+  "lead": "Ścieżka prowadzi od kosztów i energii w projekcie przez język finansów, rynek nieruchomości i badanie techniczne budynków do monitoringu kredytowanych inwestycji, zielonego finansowania, ubezpieczeń i zarządzania portfelem. Najmocniejsze mosty w bazie to „Lenders Technical Advisor”, „technical due diligence” i „taksonomia UE”. Łączą one zbiór FINANSE ze środowiskiem zbudowanym i zbiorem KOORDYNACJA."
+ },
+ "zones": {
+  "P": {
+   "label": "Izba IARP i praktyka",
+   "color": 1
+  },
+  "M": {
+   "label": "Most: liczby, rynek, badanie techniczne",
+   "color": 2
+  },
+  "F": {
+   "label": "Koordynacja w sektorze finansowym",
+   "color": 5
+  }
+ },
+ "endZone": "F",
+ "stages": [
+  {
+   "z": "P",
+   "t": "Architekt IARP – koszt, energia i ryzyko w projekcie",
+   "time": "punkt wyjścia",
+   "do": "Samodzielnie projektujesz i rozmawiasz z inwestorem o kosztach i energii budynku. Masz obowiązkowe ubezpieczenie i znasz źródła dofinansowania dla projektów.",
+   "skills": [
+    "Koszt budynku w projekcie",
+    "Charakterystyka energetyczna",
+    "Ubezpieczenie odpowiedzialności"
+   ],
+   "map": [
+    {
+     "p": "Projekt Architektoniczno Budowlany",
+     "s": [
+      "IARP",
+      "FAZA PROJEKTOWA"
+     ]
+    },
+    {
+     "p": "Audyt Energetyczny Budynku",
+     "s": [
+      "IARP",
+      "ŚRODOWISKO ZBUDOWANE",
+      "FAZA PROJEKTOWA"
+     ]
+    },
+    {
+     "p": "świadectwo charakterystyki energetycznej",
+     "s": [
+      "IARP",
+      "FINANSE",
+      "KOORDYNACJA"
+     ]
+    },
+    {
+     "p": "Ubezpieczenie Oc Obowiązkowe",
+     "s": [
+      "IARP"
+     ]
+    },
+    {
+     "p": "Fundusze Unijne Dla Architektów",
+     "s": [
+      "IARP"
+     ]
+    }
+   ],
+   "next": "Gotowe, gdy umiesz wyjaśnić inwestorowi, jak decyzje projektowe zmieniają koszt budowy i utrzymania."
+  },
+  {
+   "z": "M",
+   "t": "Język finansów inwestycji",
+   "time": "6–12 mies.",
+   "do": "Uczysz się czytać przepływy pieniężne, wskaźniki opłacalności oraz nakłady inwestycyjne i eksploatacyjne. Liczysz koszt budynku w całym cyklu życia.",
+   "skills": [
+    "Przepływy pieniężne",
+    "Wskaźniki NPV i IRR",
+    "Koszty w cyklu życia"
+   ],
+   "map": [
+    {
+     "p": "cash flow",
+     "s": [
+      "FINANSE",
+      "KOORDYNACJA"
+     ]
+    },
+    {
+     "p": "NPV",
+     "s": [
+      "FINANSE",
+      "KOORDYNACJA",
+      "ŚRODOWISKO ZBUDOWANE"
+     ]
+    },
+    {
+     "p": "IRR",
+     "s": [
+      "FINANSE",
+      "KOORDYNACJA",
+      "STRATEGIE ROZWOJU"
+     ]
+    },
+    {
+     "p": "CAPEX",
+     "s": [
+      "FINANSE",
+      "ŚRODOWISKO ZBUDOWANE"
+     ]
+    },
+    {
+     "p": "OPEX",
+     "s": [
+      "FINANSE",
+      "ŚRODOWISKO ZBUDOWANE"
+     ]
+    },
+    {
+     "p": "LCC",
+     "s": [
+      "FINANSE",
+      "ŚRODOWISKO ZBUDOWANE",
+      "STRATEGIE ROZWOJU"
+     ]
+    }
+   ],
+   "next": "Gotowe, gdy rozmawiasz z analitykiem banku lub funduszu jego językiem."
+  },
+  {
+   "z": "M",
+   "t": "Rynek nieruchomości i wartość",
+   "time": "1 rok",
+   "do": "Poznajesz rynek nieruchomości komercyjnych i mieszkaniowych na wynajem. Uczysz się czytać operaty szacunkowe i rozumieć, co buduje wartość budynku.",
+   "skills": [
+    "Rynek nieruchomości",
+    "Czytanie operatów szacunkowych",
+    "Najem instytucjonalny"
+   ],
+   "map": [
+    {
+     "p": "rynek nieruchomości",
+     "s": [
+      "KOORDYNACJA",
+      "ŚRODOWISKO ZBUDOWANE",
+      "BUDYNKI"
+     ]
+    },
+    {
+     "p": "nieruchomości komercyjne",
+     "s": [
+      "FINANSE",
+      "ŚRODOWISKO ZBUDOWANE",
+      "STRATEGIE ROZWOJU"
+     ]
+    },
+    {
+     "p": "wartość rynkowa",
+     "s": [
+      "FINANSE",
+      "KOORDYNACJA",
+      "ŚRODOWISKO ZBUDOWANE"
+     ]
+    },
+    {
+     "p": "operat szacunkowy",
+     "s": [
+      "FINANSE",
+      "KOORDYNACJA",
+      "ŚRODOWISKO ZBUDOWANE"
+     ]
+    },
+    {
+     "p": "PRS",
+     "s": [
+      "FINANSE",
+      "ŚRODOWISKO ZBUDOWANE",
+      "PRAWO"
+     ]
+    },
+    {
+     "p": "najem instytucjonalny",
+     "s": [
+      "ŚRODOWISKO ZBUDOWANE",
+      "PRAWO",
+      "URBANISTYKA"
+     ]
+    }
+   ],
+   "next": "Gotowe, gdy umiesz wskazać, które cechy techniczne budynku podnoszą lub obniżają jego wartość."
+  },
+  {
+   "z": "M",
+   "t": "Badanie techniczne budynków",
+   "time": "1 rok",
+   "do": "Przeprowadzasz techniczne badania budynków przed zakupem lub finansowaniem. Oceniasz stan, zgodność z prawem i ryzyka do raportu dla klienta.",
+   "skills": [
+    "Techniczne badanie due diligence",
+    "Audyt techniczny",
+    "Ocena ryzyka budowlanego"
+   ],
+   "map": [
+    {
+     "p": "due diligence",
+     "s": [
+      "FINANSE",
+      "ŚRODOWISKO ZBUDOWANE",
+      "STRATEGIE ROZWOJU"
+     ]
+    },
+    {
+     "p": "technical due diligence",
+     "s": [
+      "FINANSE"
+     ]
+    },
+    {
+     "p": "TDD",
+     "s": [
+      "FINANSE",
+      "ARTIFICIAL INTELLIGENCE"
+     ]
+    },
+    {
+     "p": "audyt techniczny",
+     "s": [
+      "FINANSE",
+      "STRATEGIE ROZWOJU",
+      "BUDYNKI"
+     ]
+    },
+    {
+     "p": "ocena ryzyka",
+     "s": [
+      "FINANSE",
+      "ŚRODOWISKO ZBUDOWANE",
+      "STRATEGIE ROZWOJU"
+     ]
+    },
+    {
+     "p": "ryzyko budowlane",
+     "s": [
+      "FAZA REALIZACJI"
+     ]
+    }
+   ],
+   "next": "Gotowe, gdy Twój raport techniczny wpływa na cenę lub warunki transakcji."
+  },
+  {
+   "z": "F",
+   "t": "Monitoring kredytowanej inwestycji",
+   "time": "1–2 lata",
+   "do": "Jako doradca techniczny banku sprawdzasz projekt, budżet i postęp budowy przed każdą wypłatą transzy kredytu. Raportujesz bankowi ryzyka i odchylenia.",
+   "skills": [
+    "Doradztwo techniczne dla banku",
+    "Kontrola postępu i budżetu",
+    "Raporty dla kredytodawcy"
+   ],
+   "map": [
+    {
+     "p": "Lenders Technical Advisor",
+     "s": [
+      "FINANSE",
+      "PRAWO"
+     ]
+    },
+    {
+     "p": "kredyt budowlany",
+     "s": [
+      "FINANSE"
+     ]
+    },
+    {
+     "p": "kredyt monitoring",
+     "s": [
+      "FINANSE"
+     ]
+    },
+    {
+     "p": "harmonogram rzeczowo-finansowy",
+     "s": [
+      "FINANSE",
+      "KOORDYNACJA"
+     ]
+    },
+    {
+     "p": "LTV",
+     "s": [
+      "FINANSE",
+      "KOORDYNACJA",
+      "ŚRODOWISKO ZBUDOWANE"
+     ]
+    },
+    {
+     "p": "DSCR",
+     "s": [
+      "FINANSE",
+      "ŚRODOWISKO ZBUDOWANE"
+     ]
+    }
+   ],
+   "next": "Gotowe, gdy bank wypłaca transze na podstawie Twoich raportów."
+  },
+  {
+   "z": "F",
+   "t": "Zielone finansowanie i taksonomia",
+   "time": "1 rok",
+   "do": "Oceniasz, czy budynek spełnia kryteria taksonomii UE i zielonych produktów finansowych. Analizujesz ścieżkę dekarbonizacji portfela.",
+   "skills": [
+    "Kryteria taksonomii UE",
+    "Zielone obligacje i kredyty",
+    "Ścieżki dekarbonizacji budynków"
+   ],
+   "map": [
+    {
+     "p": "zielone finansowanie",
+     "s": [
+      "ŚRODOWISKO ZBUDOWANE",
+      "MATERIAŁY"
+     ]
+    },
+    {
+     "p": "zielone obligacje",
+     "s": [
+      "FINANSE",
+      "KOORDYNACJA",
+      "ŚRODOWISKO ZBUDOWANE"
+     ]
+    },
+    {
+     "p": "zielone kredyty",
+     "s": [
+      "FINANSE",
+      "ŚRODOWISKO ZBUDOWANE",
+      "MATERIAŁY"
+     ]
+    },
+    {
+     "p": "taksonomia UE",
+     "s": [
+      "FINANSE",
+      "KOORDYNACJA",
+      "ŚRODOWISKO ZBUDOWANE"
+     ]
+    },
+    {
+     "p": "SFDR",
+     "s": [
+      "FINANSE",
+      "ŚRODOWISKO ZBUDOWANE",
+      "MATERIAŁY"
+     ]
+    },
+    {
+     "p": "CRREM",
+     "s": [
+      "FINANSE",
+      "ŚRODOWISKO ZBUDOWANE",
+      "MATERIAŁY"
+     ]
+    }
+   ],
+   "next": "Gotowe, gdy finansowanie zostaje oznaczone jako zielone na podstawie Twojej oceny."
+  },
+  {
+   "z": "F",
+   "t": "Ubezpieczenia i ryzyko",
+   "time": "1 rok",
+   "do": "Wspierasz ubezpieczycieli w ocenie ryzyka budów i budynków. Uwzględniasz ryzyko klimatyczne i ryzyko utraty wartości aktywów.",
+   "skills": [
+    "Ocena ryzyka dla ubezpieczyciela",
+    "Gwarancje kontraktowe",
+    "Ryzyko klimatyczne budynków"
+   ],
+   "map": [
+    {
+     "p": "ubezpieczenie budowy",
+     "s": [
+      "FAZA REALIZACJI",
+      "PRAWO",
+      "BEZPIECZEŃSTWO"
+     ]
+    },
+    {
+     "p": "underwriting",
+     "s": [
+      "FINANSE"
+     ]
+    },
+    {
+     "p": "gwarancja ubezpieczeniowa",
+     "s": [
+      "FINANSE",
+      "PRAWO"
+     ]
+    },
+    {
+     "p": "gwarancje bankowe",
+     "s": [
+      "PRAWO"
+     ]
+    },
+    {
+     "p": "ryzyko klimatyczne",
+     "s": [
+      "KOORDYNACJA",
+      "STRATEGIE ROZWOJU",
+      "URBANISTYKA"
+     ]
+    },
+    {
+     "p": "stranded assets",
+     "s": [
+      "FINANSE",
+      "ŚRODOWISKO ZBUDOWANE",
+      "MATERIAŁY"
+     ]
+    }
+   ],
+   "next": "Gotowe, gdy ubezpieczyciel ustala warunki polisy na podstawie Twojej oceny technicznej."
+  },
+  {
+   "z": "F",
+   "t": "Portfel nieruchomości i finansowanie publiczne",
+   "time": "2–3 lata",
+   "do": "Zarządzasz portfelem budynków funduszu lub koordynujesz programy finansowania publicznego. Decydujesz o inwestycjach w modernizację i rozwój portfela.",
+   "skills": [
+    "Zarządzanie aktywami",
+    "Fundusze nieruchomości",
+    "Instytucje finansowania publicznego"
+   ],
+   "map": [
+    {
+     "p": "asset management",
+     "s": [
+      "FINANSE",
+      "ŚRODOWISKO ZBUDOWANE",
+      "STRATEGIE ROZWOJU"
+     ]
+    },
+    {
+     "p": "portfel nieruchomości",
+     "s": [
+      "FINANSE",
+      "STRATEGIE ROZWOJU",
+      "BUDYNKI"
+     ]
+    },
+    {
+     "p": "fundusze nieruchomości",
+     "s": [
+      "ŚRODOWISKO ZBUDOWANE",
+      "URBANISTYKA"
+     ]
+    },
+    {
+     "p": "REIT",
+     "s": [
+      "FINANSE",
+      "ŚRODOWISKO ZBUDOWANE",
+      "URBANISTYKA"
+     ]
+    },
+    {
+     "p": "Bank Gospodarstwa Krajowego",
+     "s": [
+      "FINANSE",
+      "PRAWO"
+     ]
+    },
+    {
+     "p": "Europejski Bank Inwestycyjny",
+     "s": [
+      "FINANSE",
+      "STRATEGIE ROZWOJU",
+      "URBANISTYKA"
+     ]
+    }
+   ],
+   "next": "Gotowe, gdy odpowiadasz za decyzje inwestycyjne w portfelu budynków lub programie finansowania."
+  }
+ ],
+ "roles": [
+  {
+   "t": "Doradca techniczny banku",
+   "d": "Oceniasz i monitorujesz inwestycje finansowane kredytem, od projektu do odbioru.",
+   "map": [
+    {
+     "p": "Lenders Technical Advisor",
+     "s": [
+      "FINANSE",
+      "PRAWO"
+     ]
+    },
+    {
+     "p": "bank monitoring",
+     "s": [
+      "FINANSE"
+     ]
+    },
+    {
+     "p": "project finance",
+     "s": [
+      "FINANSE",
+      "ŚRODOWISKO ZBUDOWANE",
+      "STRATEGIE ROZWOJU"
+     ]
+    },
+    {
+     "p": "kredyt inwestycyjny",
+     "s": [
+      "FINANSE",
+      "BUDYNKI"
+     ]
+    }
+   ]
+  },
+  {
+   "t": "Specjalista ESG nieruchomości",
+   "d": "W banku, funduszu lub u ubezpieczyciela oceniasz budynki pod kątem taksonomii UE i ryzyka klimatycznego.",
+   "map": [
+    {
+     "p": "sustainable finance",
+     "s": [
+      "FINANSE"
+     ]
+    },
+    {
+     "p": "taksonomia UE",
+     "s": [
+      "FINANSE",
+      "KOORDYNACJA",
+      "ŚRODOWISKO ZBUDOWANE"
+     ]
+    },
+    {
+     "p": "CRREM",
+     "s": [
+      "FINANSE",
+      "ŚRODOWISKO ZBUDOWANE",
+      "MATERIAŁY"
+     ]
+    },
+    {
+     "p": "raportowanie ESG",
+     "s": [
+      "FINANSE",
+      "ŚRODOWISKO ZBUDOWANE",
+      "MATERIAŁY"
+     ]
+    }
+   ]
+  },
+  {
+   "t": "Asset manager funduszu nieruchomości",
+   "d": "Zarządzasz wartością portfela budynków: modernizacje, najemcy, koszty i strategia.",
+   "map": [
+    {
+     "p": "asset management",
+     "s": [
+      "FINANSE",
+      "ŚRODOWISKO ZBUDOWANE",
+      "STRATEGIE ROZWOJU"
+     ]
+    },
+    {
+     "p": "FIZ",
+     "s": [
+      "FINANSE"
+     ]
+    },
+    {
+     "p": "portfel nieruchomości",
+     "s": [
+      "FINANSE",
+      "STRATEGIE ROZWOJU",
+      "BUDYNKI"
+     ]
+    },
+    {
+     "p": "CAPEX",
+     "s": [
+      "FINANSE",
+      "ŚRODOWISKO ZBUDOWANE"
+     ]
+    }
+   ]
+  },
+  {
+   "t": "Koordynator finansowania publicznego",
+   "d": "W BGK, banku rozwoju lub instytucji publicznej łączysz program finansowania z oceną projektów budowlanych.",
+   "map": [
+    {
+     "p": "BGK",
+     "s": [
+      "FINANSE",
+      "ŚRODOWISKO ZBUDOWANE",
+      "STRATEGIE ROZWOJU"
+     ]
+    },
+    {
+     "p": "EBI",
+     "s": [
+      "FINANSE",
+      "ŚRODOWISKO ZBUDOWANE",
+      "PRAWO"
+     ]
+    },
+    {
+     "p": "partnerstwo publiczno-prywatne",
+     "s": [
+      "FINANSE",
+      "KOORDYNACJA",
+      "ŚRODOWISKO ZBUDOWANE"
+     ]
+    },
+    {
+     "p": "KPO",
+     "s": [
+      "FINANSE",
+      "KOORDYNACJA",
+      "ŚRODOWISKO ZBUDOWANE"
+     ]
+    }
+   ]
+  }
+ ],
+ "footnote": "Czas przy etapach jest orientacyjny i zależy od instytucji i skali transakcji. Etapy ze strefy mostu możesz przechodzić równolegle z praktyką projektową. Ścieżka zakłada, że masz już uprawnienia architektoniczne i nie wymaga nowych uprawnień. Wyceny nieruchomości sporządza rzeczoznawca majątkowy, a doradztwo inwestycyjne na rynku kapitałowym wymaga licencji. Ty dostarczasz ocenę techniczną, na której te osoby się opierają. Kursy z finansów nieruchomości i ESG są dobrowolne.",
+ "source": {
+  "database": "WERSJA 01",
+  "date": "2026-11-23"
+ },
+ "author": {
+  "name": "TOMASZ GĘSIAK",
+  "www": "https://sites.google.com/view/tomaszgesiak/pl",
+  "facebook": "https://www.facebook.com/people/TomaszGesiak/61554422925950/",
+  "youtube": "https://www.youtube.com/@TOMASZGESIAK",
+  "linkedin": "https://www.linkedin.com/in/tomaszgesiak/",
+  "instagram": "https://www.instagram.com/tomaaszgesiak/"
+ },
+ "labels": {
+  "map": "W bazie danych",
+  "author": "Kartę wytworzył architekt IARP"
+ }
+}
+</script>
+<!-- ============================================================================== -->
+
+<script>
+/* Silnik karty – wspólny dla wszystkich kart. Nie edytować przy tworzeniu nowej karty. */
+const CARD = JSON.parse(document.getElementById('card-data').textContent);
+const L = Object.assign({
+  skills: 'Kompetencje do zdobycia', map: 'Na Twojej mapie', ready: 'Gotowe, gdy',
+  rolesEyebrow: 'Role docelowe', rolesTitle: 'Gdzie ta ścieżka może się skończyć', rolesRail: 'Role docelowe',
+  showMore: 'Pokaż szczegóły', showLess: 'Zwiń szczegóły', expandAll: 'Rozwiń wszystkie etapy', collapseAll: 'Zwiń wszystkie etapy',
+  author: 'Kartę wytworzył', sourcePrefix: 'Frazy pochodzą z bazy danych', datePrefix: 'Data wytworzenia karty:'
+}, CARD.labels || {});
+const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const pad = i => String(i + 1).padStart(2, '0');
+const zcol = z => (CARD.zones[z] || {}).color || 1;
+const zc = z => `--c:var(--z${zcol(z)});--cbg:var(--z${zcol(z)}-bg)`;
+const chips = m => (m || []).map(x => `<span class="chip">${esc(x.p)}<small>${esc((x.s || []).join(' · ').toLowerCase())}</small></span>`).join('');
+const plural = (n, one, few, many) => n === 1 ? one : ([2, 3, 4].includes(n % 10) && ![12, 13, 14].includes(n % 100) ? few : many);
+const MONTHS = ['stycznia', 'lutego', 'marca', 'kwietnia', 'maja', 'czerwca', 'lipca', 'sierpnia', 'września', 'października', 'listopada', 'grudnia'];
+const plDate = iso => { const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso || ''); return m ? `${+m[3]} ${MONTHS[+m[2] - 1]} ${m[1]}` : esc(iso); };
+
+/* Nagłówek */
+document.title = CARD.meta.title;
+document.getElementById('card-eyebrow').textContent = CARD.meta.eyebrow;
+document.getElementById('card-h1').textContent = CARD.meta.h1;
+document.getElementById('card-lead').textContent = CARD.meta.lead;
+document.getElementById('path-title').textContent = CARD.path.title;
+document.getElementById('path-lead').textContent = CARD.path.lead;
+document.getElementById('roles-eyebrow').textContent = L.rolesEyebrow;
+document.getElementById('fork-title').textContent = L.rolesTitle;
+
+/* Legenda: tylko strefy użyte na karcie */
+const used = [...new Set([...CARD.stages.map(s => s.z), CARD.endZone])];
+document.getElementById('legend').innerHTML = used.map(z => `<span><i style="background:var(--z${zcol(z)})"></i>${esc(CARD.zones[z].label)}</span>`).join('');
+
+/* Linia etapów */
+const S = CARD.stages, R = CARD.roles, n = S.length + 1;
+let segs = '';
+S.forEach((s, i) => {
+  const z = (i + 1 < S.length) ? S[i + 1].z : CARD.endZone;
+  segs += `<span class="seg" style="left:calc(${(i + .5) / n * 100}% + 22px);width:calc(${100 / n}% - 44px);background:var(--z${zcol(z)})"></span>`;
+});
+document.getElementById('rail').innerHTML = segs + S.map((s, i) =>
+  `<button type="button" class="station" style="color:var(--z${zcol(s.z)})" data-go="st-${i}" aria-label="Etap ${i + 1}: ${esc(s.t)}"><span class="dot">${pad(i)}</span><span class="lbl">${esc(s.t)}</span><span class="tm">${esc(s.time)}</span></button>`
+).join('') + `<button type="button" class="station end" style="color:var(--z${zcol(CARD.endZone)})" data-go="fork-title" aria-label="${esc(L.rolesRail)}"><span class="dot">★</span><span class="lbl">${esc(L.rolesRail)}</span><span class="tm">${R.length} ${plural(R.length, 'wariant', 'warianty', 'wariantów')}</span></button>`;
+
+/* Karty etapów (rozwijane) */
+document.getElementById('timeline').innerHTML = S.map((s, i) => `
+  <article class="stage" id="st-${i}" style="${zc(s.z)}">
+    <div class="spine"><div class="num">${pad(i)}</div></div>
+    <details class="card">
+      <summary>
+        <div class="meta"><span class="pill">${esc(CARD.zones[s.z].label)}</span><span class="time">${esc(s.time)}</span></div>
+        <h3 data-n="${pad(i)}">${esc(s.t)}</h3>
+        <p class="do">${esc(s.do)}</p>
+        <span class="more"><span class="more-closed">${esc(L.showMore)}</span><span class="more-open">${esc(L.showLess)}</span><span class="chev" aria-hidden="true"></span></span>
+      </summary>
+      <div class="card-body">
+        <div class="cols">
+          <div><p class="colh">${esc(L.skills)}</p><ul class="skills">${(s.skills || []).map(x => `<li>${esc(x)}</li>`).join('')}</ul></div>
+          <div><p class="colh">${esc(L.map)}</p><div class="chips">${chips(s.map)}</div></div>
+        </div>
+        <div class="ready"><b>${esc(L.ready)}</b><span>${esc(s.next)}</span></div>
+      </div>
+    </details>
+  </article>`).join('');
+
+/* Role docelowe */
+const ez = CARD.endZone, xs = R.map((_, i) => (i + .5) / R.length * 1000);
+document.getElementById('fork-svg').innerHTML = R.length ?
+  `<path d="M500 0 V14 M${xs[0]} 14 H${xs[R.length - 1]} ${xs.map(x => `M${x} 14 V36`).join(' ')}" fill="none" stroke="var(--z${zcol(ez)})" stroke-width="4" vector-effect="non-scaling-stroke"/>` : '';
+const rolesEl = document.getElementById('roles');
+rolesEl.style.setProperty('--r', Math.max(1, Math.min(R.length, 4)));
+rolesEl.innerHTML = R.map(x => `<div class="role" style="${zc(ez)}"><h4>${esc(x.t)}</h4><p>${esc(x.d)}</p><div class="chips">${chips(x.map)}</div></div>`).join('');
+
+/* Notka: tekst + wersja bazy + data */
+const src = CARD.source || {};
+document.getElementById('card-note').innerHTML = `${esc(CARD.footnote || '')} ${esc(L.sourcePrefix)} ${esc(src.database || '')}. ${esc(L.datePrefix)} <time datetime="${esc(src.date || '')}">${plDate(src.date)}</time>.`.trim();
+
+/* Rozwijanie */
+const expandBtn = document.getElementById('expand-all');
+const allCards = () => [...document.querySelectorAll('#timeline .card')];
+function syncAll() {
+  const c = allCards(), allOpen = c.length > 0 && c.every(x => x.open);
+  expandBtn.textContent = allOpen ? L.collapseAll : L.expandAll;
+  expandBtn.setAttribute('aria-pressed', String(allOpen));
+}
+expandBtn.addEventListener('click', () => { const c = allCards(), open = !c.every(x => x.open); c.forEach(x => { x.open = open; }); syncAll(); });
+document.getElementById('timeline').addEventListener('toggle', syncAll, true);
+document.getElementById('rail').addEventListener('click', e => {
+  const st = e.target.closest('.station'); if (!st) return;
+  const el = document.getElementById(st.dataset.go); if (!el) return;
+  el.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
+  const card = el.querySelector && el.querySelector('.card');
+  if (card) { card.open = true; syncAll(); card.classList.remove('flash'); void card.offsetWidth; card.classList.add('flash'); }
+});
+syncAll();
+
+/* Autor (pusty adres = przycisk nieaktywny) */
+(function renderAuthor() {
+  const A = CARD.author || {};
+  const safe = u => /^https?:\/\//i.test(u || '') ? u : '';
+  document.getElementById('author-k').textContent = L.author;
+  const main = safe(A.www) || safe(A.linkedin) || safe(A.facebook) || safe(A.instagram) || safe(A.youtube);
+  document.getElementById('author-name').innerHTML = main ? `<a href="${esc(main)}" target="_blank" rel="noopener noreferrer me">${esc(A.name)}</a>` : esc(A.name);
+  const items = [['www', 'Strona WWW'], ['facebook', 'Facebook'], ['youtube', 'YouTube'], ['linkedin', 'LinkedIn'], ['instagram', 'Instagram']];
+  document.getElementById('author-links').innerHTML = items.map(([k, label]) => {
+    const u = safe(A[k]);
+    return u ? `<a href="${esc(u)}" target="_blank" rel="noopener noreferrer me">${label}</a>`
+             : `<span aria-disabled="true" title="Adres jeszcze nie uzupełniony">${label}</span>`;
+  }).join('');
+})();
+</script>
+</body>
+</html>
