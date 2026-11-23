@@ -269,6 +269,20 @@ h3 { font-family: var(--font-display); font-weight: 700; font-size: 20px; margin
 @media (prefers-reduced-motion: reduce) { .home-btn { transition: none; } }
 @media print { .home-btn { display: none; } .wrap { padding-bottom: 0; } }
 </style>
+<style id="disclaimer-style">
+.disclaimer { margin-top: 24px; padding: 16px 18px; background: var(--z2-bg); border: 1px solid var(--rule); border-left: 4px solid var(--z2); border-radius: 0 12px 12px 0; font-size: 13.5px; line-height: 1.55; color: var(--ink-2); }
+.disclaimer p { margin: 0 0 8px; max-width: 90ch; }
+.disclaimer .disclaimer-k { font-family: var(--font-mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--z2); font-weight: 500; margin-bottom: 8px; }
+.doc-links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.doc-links a { display: inline-flex; align-items: center; min-height: 36px; padding: 6px 14px; border-radius: 999px; border: 1px solid var(--rule); background: var(--sheet); font-family: var(--font-mono); font-size: 13px; color: var(--ink); text-decoration: none; }
+.doc-links a::before { content: "\2197"; margin-right: 6px; color: var(--ink-3); }
+.doc-links a:hover { border-color: var(--ink); }
+.doc-links a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+@media (max-width: 640px) {
+  .disclaimer { padding: 14px; font-size: 14px; }
+  .doc-links a { min-height: 44px; font-size: 14px; }
+}
+</style>
 </head>
 <body>
 <main class="wrap">
@@ -301,6 +315,13 @@ h3 { font-family: var(--font-display); font-weight: 700; font-size: 20px; margin
 
   <p class="note" id="card-note"></p>
   <footer class="author" id="author"><span class="author-k" id="author-k"></span><span class="author-v" id="author-name"></span><nav class="author-links" id="author-links" aria-label="Autor w sieci"></nav></footer>
+  <aside class="disclaimer" aria-labelledby="disclaimer-k">
+    <p class="disclaimer-k" id="disclaimer-k">Zastrzeżenie</p>
+    <p>Prezentowana strona internetowa stanowi autorską koncepcję Tomasza Gęsiaka, ukazującą potencjalne ścieżki rozwoju zawodowego architektów posiadających uprawnienia projektowe oraz zrzeszonych w izbie zawodowej. Zarówno baza danych, jak i przedstawione na stronie ścieżki kariery oraz treści zostały wygenerowane przy użyciu sztucznej inteligencji (AI) na podstawie założeń autora.</p>
+    <p>Niniejsze repozytorium oraz publikowane materiały mają charakter wyłącznie poglądowy i nie stanowią oficjalnego stanowiska ani nie są autoryzowane przez żadną izbę zawodową, w tym Izbę Architektów Rzeczypospolitej Polskiej (IARP).</p>
+    <p>Ze względu na specyfikę narzędzi AI (ryzyko wystąpienia błędów, nieścisłości, tzw. halucynacji lub nieaktualnych danych), wszelkie zawarte tu informacje wymagają samodzielnej weryfikacji przez użytkownika. Autor nie ponosi odpowiedzialności za jakiekolwiek decyzje ani działania podjęte na podstawie treści opublikowanych w tym serwisie.</p>
+    <nav class="doc-links" aria-label="Pliki repozytorium"><a href="README.txt">README.txt</a><a href="LICENSE">LICENSE</a></nav>
+  </aside>
 <a class="home-btn" href="index.html" aria-label="HOME: wróć do strony startowej ze wszystkimi ścieżkami"><span class="home-ico" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 7.5 8 3l5.5 4.5"/><path d="M4 6.5V13h3v-3.5h2V13h3V6.5"/></svg></span><span class="home-txt">HOME</span></a>
 </main>
 
@@ -309,7 +330,7 @@ h3 { font-family: var(--font-display); font-weight: 700; font-size: 20px; margin
 {
  "meta": {
   "title": "Architekt IARP w koordynacji środowiska zbudowanego",
-  "eyebrow": "IARP · Baza YIARP · Ścieżka kariery",
+  "eyebrow": "Ścieżka kariery",
   "h1": "Architekt IARP w koordynacji środowiska zbudowanego",
   "lead": "Droga od pracowni projektowej do koordynacji środowiska zbudowanego jako całości, bez zdobywania kolejnych uprawnień. Zamiast jednego budynku patrzysz na zasób: budynki, przestrzenie publiczne, ich cykl życia, dostępność, klimat i dane. Koordynujesz ludzi i instytucje, które o nich decydują. Przy każdym etapie są frazy z bazy danych i nazwa zbioru, z którego pochodzą."
  },

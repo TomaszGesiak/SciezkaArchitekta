@@ -246,8 +246,9 @@ body { -webkit-text-size-adjust: 100%; }
 
 /* Grafika „Ścieżka Architekta” pod opisem */
 .hero-fig { margin: 22px 0 0; background: var(--sheet); border: 1px solid var(--rule); border-radius: 14px; padding: 12px; }
-.hero-link { display: block; border-radius: 10px; overflow: hidden; background: #fff; cursor: zoom-in; }
+.hero-link { position: relative; display: block; border-radius: 10px; overflow: hidden; background: #fff; cursor: zoom-in; }
 .hero-link img { display: block; width: 100%; height: auto; }
+.hero-link .hero-ai { position: absolute; top: 2.2%; right: 1.6%; width: clamp(30px, 6.2%, 64px); height: auto; filter: drop-shadow(0 2px 4px rgba(22, 35, 58, .25)); pointer-events: none; }
 .hero-link:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 .hero-fig figcaption { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 16px; margin: 10px 4px 2px; font-size: 13.5px; color: var(--ink-2); }
 .hero-fig .zoom-hint { font-family: var(--font-mono); font-size: 11.5px; color: var(--ink-3); }
@@ -291,9 +292,24 @@ body { -webkit-text-size-adjust: 100%; }
 .home-ico { width: 32px; height: 32px; border-radius: 50%; border: 2px solid currentColor; display: grid; place-items: center; }
 .home-ico::before { content: ""; width: 9px; height: 9px; border-left: 2.5px solid currentColor; border-top: 2.5px solid currentColor; transform: translateY(2px) rotate(45deg); }
 h1:focus { outline: none; }
+.wrap { padding-bottom: 104px; }
 @media (max-width: 640px) {
   .home-btn { right: max(14px, env(safe-area-inset-right)); bottom: max(14px, env(safe-area-inset-bottom)); min-height: 52px; padding: 8px 14px 8px 8px; font-size: 13px; }
   .note { margin-bottom: 0; }
-  .author { padding-bottom: 72px; }
+  .wrap { padding-bottom: 96px; }
 }
 @media print { .home-btn { display: none; } }
+
+/* Zastrzeżenie w stopce + linki do README i LICENSE */
+.disclaimer { margin-top: 24px; padding: 16px 18px; background: var(--z2-bg); border: 1px solid var(--rule); border-left: 4px solid var(--z2); border-radius: 0 12px 12px 0; font-size: 13.5px; line-height: 1.55; color: var(--ink-2); }
+.disclaimer p { margin: 0 0 8px; max-width: 90ch; }
+.disclaimer .disclaimer-k { font-family: var(--font-mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--z2); font-weight: 500; margin-bottom: 8px; }
+.doc-links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.doc-links a { display: inline-flex; align-items: center; min-height: 36px; padding: 6px 14px; border-radius: 999px; border: 1px solid var(--rule); background: var(--sheet); font-family: var(--font-mono); font-size: 13px; color: var(--ink); text-decoration: none; }
+.doc-links a::before { content: "\2197"; margin-right: 6px; color: var(--ink-3); }
+.doc-links a:hover { border-color: var(--ink); }
+.doc-links a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+@media (max-width: 640px) {
+  .disclaimer { padding: 14px; font-size: 14px; }
+  .doc-links a { min-height: 44px; font-size: 14px; }
+}
